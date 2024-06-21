@@ -3,7 +3,7 @@ import TransactionModel from "../db/transactions.js";
 
 const router = Router();
 
-router.get("/stats", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const month = parseInt(req.query.month || 3);
 
@@ -15,13 +15,13 @@ router.get("/stats", async (req, res) => {
       },
       {
         $match: {
-          month: parseInt(month || 3),
+          month: month,
         },
       },
       {
         $group: {
           _id: "stats",
-          totalPrice: { $sum: "$price" },
+          totalSaleAmount: { $sum: { $cond: ["$sold", "$price", 0] } },
           noOfSold: { $sum: { $cond: ["$sold", 1, 0] } },
           noOfNotSold: { $sum: { $cond: ["$sold", 0, 1] } },
         },
@@ -33,9 +33,9 @@ router.get("/stats", async (req, res) => {
       },
     ]);
 
-    res.status(200).send(transactions);
+    res.status(200).json({ data: transactions });
   } catch (error) {
-    res.status(504).send(error.message);
+    res.status(504).json({ error: error.message });
   }
 });
 

@@ -5,7 +5,7 @@ const TransactionSchema = new mongoose.Schema({
     type: Number,
   },
   title: String,
-  price: mongoose.Schema.Types.Decimal128,
+  price: Number,
   description: String,
   category: String,
   image: String,

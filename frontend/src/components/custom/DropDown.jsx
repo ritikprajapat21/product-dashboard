@@ -8,10 +8,10 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { DropdownMenu, DropdownMenuPortal } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import useData from "@/hooks/useData";
 
 export default function DropDown() {
-  const [month, setMonth] = useState(3);
+  const { month, setMonth } = useData();
 
   const months = [
     { id: 1, month: "January" },

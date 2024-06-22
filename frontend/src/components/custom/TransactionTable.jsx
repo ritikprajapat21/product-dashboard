@@ -8,21 +8,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Row from "./Row";
-import { useEffect, useState } from "react";
 import Header from "./Header";
+import useData from "@/hooks/useData";
+import Pagination from "./Pagination";
 
 function TransactionTable() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("http://localhost:3000/transactions");
-      const data = await res.json();
-      console.log(data);
-      setData(data.data);
-    };
-
-    fetchData();
-  }, []);
+  const { transactions: data } = useData();
 
   return (
     <>
@@ -52,6 +43,7 @@ function TransactionTable() {
           )}
         </TableBody>
       </Table>
+      <Pagination />
     </>
   );
 }

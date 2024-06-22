@@ -1,28 +1,19 @@
-import TransactionTable from "./components/custom/TransactionTable";
 import "./App.css";
 import BarChart from "./components/custom/BarChart";
-import { useEffect, useState } from "react";
 import PieChart from "./components/custom/PieChart";
+import TransactionTable from "./components/custom/TransactionTable";
 
 function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch("http://localhost:3000/");
-      const data = await res.json();
-
-      setData(data);
-    };
-
-    getData();
-  }, []);
-
   return (
     <>
-      <TransactionTable />
-      <BarChart data={data.bar} />
-      <PieChart data={data.pie} />
+      <h1 className="m-4 text-2xl font-bold">Transaction Dashboard</h1>
+      <div className="m-2">
+        <TransactionTable />
+      </div>
+      <div className="flex flex-col lg:flex-row items-center mt-4">
+        <BarChart />
+        <PieChart />
+      </div>
     </>
   );
 }

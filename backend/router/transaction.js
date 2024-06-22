@@ -5,8 +5,8 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const month = parseInt(req.query.month || 3);
-    const page = parseInt(req.query.page) || 0;
+    const month = parseInt(req.query.month) || 3;
+    const page = parseInt(req.query.page) - 1 || 0;
     const quantity = parseInt(req.query.q) || 10;
     const search = req.query.s || "";
 

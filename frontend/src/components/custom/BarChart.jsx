@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import useData from "@/hooks/useData";
 
 ChartJs.register(
   CategoryScale,
@@ -19,9 +20,12 @@ ChartJs.register(
   Legend,
 );
 
-const BarChart = ({ data, ...props }) => {
+const BarChart = () => {
   const [labels, setLabels] = useState([]);
   const [count, setCount] = useState([]);
+  const {
+    result: { bar: data },
+  } = useData();
 
   useEffect(() => {
     if (data) {
@@ -39,6 +43,7 @@ const BarChart = ({ data, ...props }) => {
       setCount(count);
     }
   }, [data]);
+
   return (
     <div className="relative lg:w-1/2 mx-auto my-8">
       <Bar
@@ -52,7 +57,17 @@ const BarChart = ({ data, ...props }) => {
             },
           ],
         }}
-        {...props}
+        options={{
+          plugins: {
+            legend: {
+              labels: { font: { size: 15 } },
+            },
+          },
+          scales: {
+            x: { ticks: { font: { size: 13 } } },
+            y: { ticks: { font: { size: 13 } } },
+          },
+        }}
       />
     </div>
   );

@@ -2,12 +2,14 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/", async (_, res) => {
+router.get("/", async (req, res) => {
   try {
+    const month = parseInt(req.query.month) || 3;
+
     const [stats, bar, pie] = await Promise.all([
-      fetch("http://localhost:3000/stats"),
-      fetch("http://localhost:3000/chart/bar"),
-      fetch("http://localhost:3000/chart/pie"),
+      fetch(`http://localhost:3000/stats?month=${month}`),
+      fetch(`http://localhost:3000/chart/bar?month=${month}`),
+      fetch(`http://localhost:3000/chart/pie?month=${month}`),
     ]);
 
     const statsData = await stats.json();

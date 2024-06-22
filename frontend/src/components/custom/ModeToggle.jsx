@@ -24,13 +24,22 @@ const ModeToggle = () => {
         className="bg-secondary rounded mt-1 p-2"
         align="end"
       >
-        <DropdownMenuItem onClick={() => changeTheme("light")}>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => changeTheme("light")}
+        >
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("dark")}>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => changeTheme("dark")}
+        >
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("system")}>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => changeTheme("system")}
+        >
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

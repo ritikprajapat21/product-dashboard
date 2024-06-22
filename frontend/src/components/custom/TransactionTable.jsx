@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Row from "./Row";
-import Header from "./Header";
+import Header from "./TableHeader";
 import useData from "@/hooks/useData";
 import Pagination from "./Pagination";
 

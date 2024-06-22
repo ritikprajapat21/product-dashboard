@@ -7,9 +7,9 @@ export default function Row({ data }) {
     <TableRow key={tr.id}>
       <TableCell>{tr.id}</TableCell>
       <TableCell>{tr.title}</TableCell>
-      <TableCell>{tr.category}</TableCell>
       <TableCell>{tr.description}</TableCell>
       <TableCell>{tr.price}</TableCell>
+      <TableCell className="capitalize">{tr.category}</TableCell>
       <TableCell>{tr.sold ? <Check /> : <X />}</TableCell>
       <TableCell>
         <img className="w-[100rem] lg:w-fit" src={tr.image} alt="image" />

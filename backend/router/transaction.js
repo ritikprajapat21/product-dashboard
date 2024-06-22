@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
       {
         $match: {
           $or: [
-            { title: new RegExp(search) },
-            { description: new RegExp(search) },
+            { title: new RegExp(search, "i") },
+            { description: new RegExp(search, "i") },
             { price: { $eq: parseFloat(search) } },
           ],
         },

@@ -1,13 +1,16 @@
-import DropDown from "./DropDown";
-import Search from "./Search";
+import ModeToggle from "./ModeToggle";
 
-export default function Header() {
+const Header = () => {
   return (
     <>
-      <div className="mb-2 flex justify-between mx-2">
-        <Search />
-        <DropDown />
-      </div>
+      <header className="flex justify-between items-center">
+        <h1 className="m-4 text-2xl font-bold text-center">
+          Transaction Dashboard
+        </h1>
+        <ModeToggle />
+      </header>
     </>
   );
-}
+};
+
+export default Header;

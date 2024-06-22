@@ -45,7 +45,7 @@ const BarChart = () => {
   }, [data]);
 
   return (
-    <div className="relative lg:w-1/2 mx-auto my-8">
+    <div className="relative lg:w-1/2 lg:h-full mx-auto my-8">
       <Bar
         data={{
           labels: labels,

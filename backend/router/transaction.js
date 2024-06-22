@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
     const quantity = parseInt(req.query.q) || 10;
     const search = req.query.s || "";
 
-    console.log("search", search);
     const transactions = await TransactionModel.aggregate([
       {
         $addFields: {

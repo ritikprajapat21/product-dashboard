@@ -3,12 +3,16 @@ import { createContext, useState, useEffect } from "react";
 export const dataContext = createContext();
 
 const DataProvider = ({ children }) => {
-  const [month, setMonth] = useState(3);
+  const [month, setMonth] = useState(
+    parseInt(localStorage.getItem("month")) || 3,
+  );
   const [result, setResult] = useState([]);
   const [transactions, setTransactions] = useState([]);
-  const [page, setPage] = useState(1);
-  const [quantity, setQuantity] = useState(10);
-  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(parseInt(localStorage.getItem("page")) || 1);
+  const [quantity, setQuantity] = useState(
+    parseInt(localStorage.getItem("quantity")) || 10,
+  );
+  const [search, setSearch] = useState(localStorage.getItem("search") || "");
   const baseUrl = "http://localhost:3000/";
 
   useEffect(() => {
@@ -25,6 +29,11 @@ const DataProvider = ({ children }) => {
   }, [month]);
 
   useEffect(() => {
+    localStorage.setItem("month", month);
+    localStorage.setItem("page", page);
+    localStorage.setItem("quantity", quantity);
+    localStorage.setItem("search", search);
+
     const fetchData = async () => {
       const res = await fetch(
         `${baseUrl}transactions?month=${month}&page=${page}&q=${quantity}&s=${search}`,
